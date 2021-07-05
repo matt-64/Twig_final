@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/twich_final.iml" filepath="$PROJECT_DIR$/.idea/twich_final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/twig_final.iml" filepath="$PROJECT_DIR$/.idea/twig_final.iml" />
     </modules>
   </component>
 </project>

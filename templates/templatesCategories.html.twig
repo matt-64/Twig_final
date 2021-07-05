@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 
     {% block metaTitle %}
-        Liste des articles
+       Catégorie
     {% endblock metaTitle %}
+
+    {% block header %}
+        <header>
+            <div class="logo">
+                <a href="http://127.0.0.1:8000/categorie" class="logo"><img src="media/logo.png" alt="retour acceuil" class="resp"></a>
+            </div>
+            <ul class="header">
+                <li ><a href="" class="text-deco ">Accueil</a> </li>
+                <li ><a href="" class="text-deco ">Commande</a> </li>
+                <li  ><a href="" class="text-deco ">Categories</a> </li>
+            </ul>
+        </header>
+    {% endblock %}
 
     {% block main %}
         <main>
             <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
-            <h1>Il y'a {{ categories | length }} catégories dans la base de données</h1>
+            <center><h1 class="text-deco">Il y'a {{ categories | length }} catégories dans la base de données</h1></center>
             {% for categorie in categories %}
                 <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
                 {% if categorie.published %}
                     <article>
-                        <a href="{{ path('categorieShow',{'id':categorie.id}) }}">
+                        <a href="{{ path('categorieShow',{'id':categorie.id}) }}" class="text-deco ">
                             <h1>{{ categorie.title }}</h1>
                         </a>
                         <p>{{ categorie.content }}</p>
@@ -21,4 +34,7 @@
                 {% endif %}
             {% endfor %}
         </main>
+    {% endblock %}
+
+    {% block footer %}
     {% endblock %}

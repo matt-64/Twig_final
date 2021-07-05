@@ -4,6 +4,10 @@
     {{ categories.title }}
 {% endblock metaTitle %}
 
+    {% block header %}
+        <a href="http://127.0.0.1:8000/categorie"><img src="media/logo.png" alt="" class="resp"></a>
+    {% endblock %}
+
     {% block main %}
         <main>
             <article>
@@ -14,7 +18,7 @@
     {% endblock main %}
 
     {% block text %}
-        <p>
-            test du texte en footer
-        </p>
+        <footer class="footer">
+
+        </footer>
     {% endblock %}

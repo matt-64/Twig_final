@@ -26,7 +26,7 @@ class CategoriesControler extends AbstractController
             "title" => "Securité",
             "content" => "Attention les étrangers sont très méchants",
             "id" => 3,
-            "published" => false
+            "published" => true
         ],
         4 => [
             "title" => "Ecologie",
