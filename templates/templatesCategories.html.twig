@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+    {% block metaTitle %}
+        Liste des articles
+    {% endblock metaTitle %}
+
+    {% block main %}
+        <main>
+            <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
+            <h1>Il y'a {{ categories | length }} catégories dans la base de données</h1>
+            {% for categorie in categories %}
+                <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
+                {% if categorie.published %}
+                    <article>
+                        <a href="{{ path('categorieShow',{'id':categorie.id}) }}">
+                            <h1>{{ categorie.title }}</h1>
+                        </a>
+                        <p>{{ categorie.content }}</p>
+                        <h1 class="text-center">{{ categorie.id }}</h1>
+                    </article>
+                {% endif %}
+            {% endfor %}
+        </main>
+    {% endblock %}

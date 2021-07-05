@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block metaTitle %}
+    {{ categories.title }}
+{% endblock metaTitle %}
+
+    {% block main %}
+        <main>
+            <article>
+                <h1>{{ categories.title }}</h1>
+                <p>{{ categories.content }}</p>
+            </article>
+        </main>
+    {% endblock main %}
+
+    {% block text %}
+        <p>
+            test du texte en footer
+        </p>
+    {% endblock %}
