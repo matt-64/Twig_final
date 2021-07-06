@@ -35,6 +35,7 @@ class CategoriesControler extends AbstractController
             "published" => true
         ]
     ];
+
     /**
      * @Route("/categorie", name="categorieList")
      */
