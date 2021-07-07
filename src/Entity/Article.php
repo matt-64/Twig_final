@@ -64,6 +64,7 @@ class Article
         $this->isPublished = $isPublished;
     }
 
+
     /**
      * @return mixed
      */
@@ -80,6 +81,7 @@ class Article
         $this->title = $title;
     }
 
+
     /**
      * @return mixed
      */
@@ -95,6 +97,7 @@ class Article
     {
         $this->content = $content;
     }
+
 
     /**
      * @return mixed
