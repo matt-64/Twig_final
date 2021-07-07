@@ -27,6 +27,28 @@ class Category
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     */
+    private $isPublished;
+
+    /**
+     * @return mixed
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+
+    /**
+     * @param mixed $isPublished
+     */
+    public function setIsPublished($isPublished): void
+    {
+        $this->isPublished = $isPublished;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

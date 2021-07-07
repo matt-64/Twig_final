@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block metaTitle %}
-    {{ categories.title }}
+    {{ categorie.title }}
 {% endblock metaTitle %}
 
     {% block header %}
@@ -11,8 +11,8 @@
     {% block main %}
         <main>
             <article>
-                <h1>{{ categories.title }}</h1>
-                <p>{{ categories.content }}</p>
+                <h1>{{ categorie.title }}</h1>
+                <p>{{ categorie.description }}</p>
             </article>
         </main>
     {% endblock main %}

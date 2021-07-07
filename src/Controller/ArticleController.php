@@ -32,7 +32,8 @@ class ArticleController extends AbstractController
     /**
      * @Route("/articles/{id}",name="articleShow")
      */
-    public function articleShow($id, ArticleRepository  $articleRepository){
+    public function articleShow($id, ArticleRepository  $articleRepository)
+    {
 
        $article = $articleRepository->find($id);
 

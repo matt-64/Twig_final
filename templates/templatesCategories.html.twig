@@ -23,12 +23,12 @@
             <center><h1 class="text-deco">Il y'a {{ categories | length }} catégories dans la base de données</h1></center>
             {% for categorie in categories %}
                 <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
-                {% if categorie.published %}
+                {% if categorie.isPublished %}
                     <article>
                         <a href="{{ path('categorieShow',{'id':categorie.id}) }}" class="text-deco ">
                             <h1>{{ categorie.title }}</h1>
                         </a>
-                        <p>{{ categorie.content }}</p>
+                        <p>{{ categorie.description }}</p>
                         <h1 class="text-center">{{ categorie.id }}</h1>
                     </article>
                 {% endif %}
