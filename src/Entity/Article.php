@@ -3,8 +3,8 @@
 
 namespace App\Entity;
 
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Column;
 
 //exercice:
 //créez une table article avec ces colonnes : id, title, content, createdAt
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\Column;
 
 //J'utilise une classe du VENDOR '@ORM' afin de créer une entité du nom de la classe
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
 class Article
 {
@@ -24,29 +24,38 @@ class Article
     private $id;
 
     /**
-     * @Column(type="string", length=32)
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @ORMColumn(type="string", length=32)
      */
     private $title;
+
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
+
     /**
      * @ORM\Column(type="datetime")
      */
     private  $createdAt;
 
-    /**
-     * @return mixed
-     */
 
     /**
      * @ORM\Column(type="boolean")
      *
      */
     private $isPublished;
+
 
     /**
      * @return mixed
@@ -55,7 +64,6 @@ class Article
     {
         return $this->isPublished;
     }
-
     /**
      * @param mixed $isPublished
      */
@@ -72,7 +80,6 @@ class Article
     {
         return $this->title;
     }
-
     /**
      * @param mixed $title
      */
@@ -89,7 +96,6 @@ class Article
     {
         return $this->content;
     }
-
     /**
      * @param mixed $content
      */
@@ -106,7 +112,6 @@ class Article
     {
         return $this->createdAt;
     }
-
     /**
      * @param mixed $createdAt
      */
