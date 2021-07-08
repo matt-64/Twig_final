@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
@@ -36,6 +37,12 @@ class ArticleController extends AbstractController
     {
 
        $article = $articleRepository->find($id);
+
+        // si l'article n'a pas été trouvé, je renvoie une exception (erreur)
+        // pour afficher une 404
+        if (is_null($article)) {
+            throw new NotFoundHttpException();
+        }
 
         return $this->render("ArticleShow.html.twig", ['article' => $article]);
 

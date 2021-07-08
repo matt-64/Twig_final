@@ -5,11 +5,13 @@ namespace App\Controller;
 
 
 use App\Repository\TagRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TagController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
+class TagController extends AbstractController
 {
+
     /**
      * @Route("/tags", name="tagList")
      */

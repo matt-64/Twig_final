@@ -61,10 +61,9 @@ p {
 
 }
 article {
-    box-shadow: 2px 0px 50px #02027b;
+    box-shadow: 10px 10px 0px #02027b;
     margin: 100px 20px;
     flex-wrap: wrap;
-    border: solid 1px black;
 }
 main {
     box-shadow: 5px 3px 15px rgba(0, 14, 246, 0.51);

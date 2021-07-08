@@ -11,7 +11,7 @@
             <article>
                 <h1 class="text-deco">{{ article.title }}</h1>
                 <p>{{ article.content }}</p>
-
+                <p>{{ article.createdAt | date('y-m-d') }}</p>
             </article>
         </main>
     {% endblock main %}
