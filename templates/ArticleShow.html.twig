@@ -13,6 +13,7 @@
                 <p>{{ article.content }}</p>
                 <p>{{ article.createdAt | date('y-m-d') }}</p>
                 <p>Article appartenant à la catégorie "{{ article.Category.title }}"</p>
+                <p>Son Tag est "{{ article.Tag.title }}"</p>
             </article>
         </main>
     {% endblock main %}

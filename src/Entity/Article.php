@@ -91,7 +91,7 @@ class Article
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tag")
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="articles")
      */
     private $tag;
 
@@ -110,9 +110,6 @@ class Article
     {
         $this->tag = $tag;
     }
-
-
-
 
     /**
      * @return mixed

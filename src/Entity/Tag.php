@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,24 @@ class Tag
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $color;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="tag")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+
 
     public function getId(): ?int
     {
