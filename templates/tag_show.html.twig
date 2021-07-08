@@ -1,7 +1,22 @@
 {% extends 'base.html.twig' %}
 
+{% block metaTitle %}
+    Tags
+{% endblock %}
+{% block header %}
+    <header class="header-tags">
+        <h1>
+            Welcome in {{ tag.title }}
+        </h1>
+    </header>
+{% endblock %}
 {% block main %}
     <article class="tag">
         <p style="background-color: {{ tag.color }}">{{ tag.title }}</p>
     </article>
+{% endblock %}
+{% block footer %}
+    <div class="flex">
+        <a href="http://127.0.0.1:8000/tags" class="logo"><img src={{ asset('media/home.png')}} alt="" class="resp"></a>
+    </div>
 {% endblock %}

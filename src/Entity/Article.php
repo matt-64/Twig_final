@@ -56,7 +56,6 @@ class Article
      */
     private $isPublished;
 
-
     /**
      * @return mixed
      */
@@ -70,6 +69,25 @@ class Article
     public function setIsPublished($isPublished): void
     {
         $this->isPublished = $isPublished;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="categorie")
+     */
+    private $categorie;
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie): void
+    {
+        $this->categorie = $categorie;
     }
 
 
