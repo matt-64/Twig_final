@@ -33,7 +33,7 @@ class Article
 
 
     /**
-     * @ORMColumn(type="string", length=32)
+     * @ORM\Column(type="string", length=32)
      */
     private $title;
 
@@ -72,23 +72,25 @@ class Article
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="categorie")
+     * @ORM\ManyToOne(targetEntity="Category")
      */
-    private $categorie;
+    private $category;
     /**
      * @return mixed
      */
-    public function getCategorie()
+    public function getCategory()
     {
-        return $this->categorie;
+        return $this->category;
     }
     /**
-     * @param mixed $categorie
+     * @param mixed $category
      */
-    public function setCategorie($categorie): void
+    public function setCategory($category): void
     {
-        $this->categorie = $categorie;
+        $this->category = $category;
     }
+
+
 
 
     /**
