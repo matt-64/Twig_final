@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-
+{% block header %}
+    <div class="flex">
+        <a href="http://127.0.0.1:8000/articles" class="logo"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+    </div>
+{% endblock %}
 
     {% block main %}
         <main>
             <article>
-                <h1>{{ article.title }}</h1>
+                <h1 class="text-deco">{{ article.title }}</h1>
                 <p>{{ article.content }}</p>
 
             </article>

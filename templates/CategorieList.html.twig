@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+    {% block metaTitle %}
+       Catégories
+    {% endblock metaTitle %}
+
+    {% block header %}
+        <header class="flex align-center space-between">
+            <div class="flex">
+                <a href="http://127.0.0.1:8000/categories" class="logo"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+            </div>
+
+            <ul class="header flex ">
+                <li ><a href="" class="text-deco ">Accueil</a> </li>
+                <li ><a href="" class="text-deco ">Commande</a> </li>
+                <li ><a href="" class="text-deco ">Categories</a> </li>
+            </ul>
+
+        </header>
+    {% endblock %}
+
+    {% block main %}
+        <main class="justify-center">
+            <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
+            <h1 class="text-deco">Il y'a {{ categories | length }} catégories dans la base de données</h1>
+           <section>
+               {% for categorie in categories %}
+                   <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
+                   {% if categorie.isPublished %}
+                       <article>
+                           <a href="{{ path('categorieShow',{'id':categorie.id}) }}" class="text-deco ">
+                               <h1>{{ categorie.title }}</h1>
+                           </a>
+                           <p>{{ categorie.description }}</p>
+                           <h1 class="text-center">{{ categorie.id }}</h1>
+                       </article>
+                   {% endif %}
+               {% endfor %}
+
+           </section>
+        </main>
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}

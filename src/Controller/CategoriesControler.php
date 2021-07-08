@@ -17,7 +17,7 @@ class CategoriesControler extends AbstractController
 
        $categories = $categoryRepository->findAll();
 
-       return $this->render("templatesCategories.html.twig", ['categories' => $categories]);
+       return $this->render("CategorieList.html.twig", ['categories' => $categories]);
    }
 //------------------------------------------------------------------------
     //Je créer ma 'Route'

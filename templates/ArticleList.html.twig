@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
+{% block metaTitle %}
+    Articles
+{% endblock metaTitle %}
 {% block header %}
-    <a href="http://127.0.0.1:8000/categorie"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+    <div class="flex">
+        <a href="http://127.0.0.1:8000/articles" class="logo"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+    </div>
+
 {% endblock %}
 {% block main %}
     <main>
         <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
-        <h1>Il y'a {{ articles | length }} articles dans la base de données</h1>
+        <h1 class="text-deco">Il y'a {{ articles | length }} articles dans la base de données</h1>
         {% for article in articles %}
             <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
             {% if article.ispublished %}
                 <article>
                     <a href="{{ path('articleShow',{id:article.id}) }}">
-                        <h1>{{ article.title }}</h1>
+                        <h1 class="text-deco">{{ article.title }}</h1>
                     </a>
-                    <p>{{ article.content }}</p>
-                    <h1 class="text-center"><p>La valeur de l'id est: {{ article.id }}</p></h1>
+                    <div class="articleContent ">
+                        <p>{{ article.content }}</p>
+                        <h1 class="text-center"><p>La valeur de l'id est: {{ article.id }}</p></h1>
+                    </div>
+
                 </article>
             {% endif %}
         {% endfor %}

@@ -5,13 +5,15 @@
 {% endblock metaTitle %}
 
     {% block header %}
-        <a href="http://127.0.0.1:8000/categorie"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+        <div class="flex">
+            <a href="http://127.0.0.1:8000/categories" class="logo"><img src={{ asset('media/logo.png')}} alt="" class="resp"></a>
+        </div>
     {% endblock %}
 
     {% block main %}
         <main>
             <article>
-                <h1>{{ categorie.title }}</h1>
+                <h1 class="text-deco">{{ categorie.title }}</h1>
                 <p>{{ categorie.description }}</p>
             </article>
         </main>
