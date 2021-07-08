@@ -72,7 +72,7 @@ class Article
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
      */
     private $category;
     /**
@@ -88,6 +88,27 @@ class Article
     public function setCategory($category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Tag")
+     */
+    private $tag;
+
+    /**
+     * @return mixed
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function setTag($tag): void
+    {
+        $this->tag = $tag;
     }
 
 

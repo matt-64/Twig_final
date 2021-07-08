@@ -15,6 +15,10 @@
             <article>
                 <h1 class="text-deco">{{ categorie.title }}</h1>
                 <p>{{ categorie.description }}</p>
+
+                {% for article in categorie.articles %}
+                <p>{{ article.title }}</p>
+                {% endfor %}
             </article>
         </main>
     {% endblock main %}

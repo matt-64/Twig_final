@@ -23,7 +23,7 @@
         <main class="justify-center">
             <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
             <h1 class="text-deco">Il y'a {{ categories | length }} catégories dans la base de données</h1>
-           <section>
+           <section class="articleMain justify-evenly">
                {% for categorie in categories %}
                    <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
                    {% if categorie.isPublished %}

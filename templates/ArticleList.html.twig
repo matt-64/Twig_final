@@ -12,20 +12,23 @@
     <main>
         <!-- j'utilise un filtre de twig afin de faire apparaitre le nombre d'articles dans mon tableau   -->
         <h1 class="text-deco">Il y'a {{ articles | length }} articles dans la base de données</h1>
-        {% for article in articles %}
-            <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
-            {% if article.ispublished %}
-                <article>
-                    <a href="{{ path('articleShow',{id:article.id}) }}">
-                        <h1 class="text-deco">{{ article.title }}</h1>
-                    </a>
-                    <div class="articleContent ">
-                        <p>{{ article.content }}</p>
-                        <h1 class="text-center"><p>La valeur de l'id est: {{ article.id }}</p></h1>
-                    </div>
+        <div class="articleMain space-between">
+            {% for article in articles %}
+                <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
+                {% if article.ispublished %}
+                    <article>
+                        <a href="{{ path('articleShow',{id:article.id}) }}">
+                            <h1 class="text-deco">{{ article.title }}</h1>
+                        </a>
+                        <div class="articleContent ">
+                            <p>{{ article.content }}</p>
+                            <h1 class="text-center"><p>La valeur de l'id est: {{ article.id }}</p></h1>
+                        </div>
 
-                </article>
-            {% endif %}
-        {% endfor %}
+                    </article>
+                {% endif %}
+            {% endfor %}
+        </div>
+
     </main>
 {% endblock %}

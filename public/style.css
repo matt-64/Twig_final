@@ -21,12 +21,14 @@
 .space-between {
     justify-content: space-between;
 }
-
 .justify-center {
     justify-content: center;
 }
 .align-center {
     align-items: center;
+}
+.justify-evenly{
+    justify-content: space-evenly;
 }
 .logo {
     width: 100px;
@@ -39,12 +41,14 @@
     align-items: center;
     font-size: 30px;
     font-family:fantasy;
-
 }
 header {
     background-color: rgba(20, 20, 20, 0.75);
     height: 15vh;
     justify-content: space-around;
+}
+.title{
+    display: inline;
 }
 body{
     background-color: rgba(19, 14, 57, 0.84);
@@ -66,13 +70,17 @@ p {
 }
 article {
     box-shadow: 10px 10px 0px #02027b;
-    margin: 100px 20px;
-    flex-wrap: wrap;
+    width: 25%;
+    margin: 0 50px;
 }
-main {
-    box-shadow: 5px 3px 15px rgba(0, 14, 246, 0.51);
+.articleMain{
+    box-shadow: 5px 3px 5px rgba(0, 14, 246, 0.51);
     min-height: calc(100vh - 180px);
     width: 100%;
+    text-align: center;
+    display: flex;
+}
+main {
     text-align: center;
 }
 footer {
