@@ -38,13 +38,10 @@ class Tag
         $this->articles = new ArrayCollection();
     }
 
-
     public function getArticles()
     {
         return $this->articles;
     }
-
-
 
     public function getId(): ?int
     {

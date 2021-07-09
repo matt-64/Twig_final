@@ -45,8 +45,21 @@ class ArticleController extends AbstractController
         }
 
         return $this->render("ArticleShow.html.twig", ['article' => $article]);
-
     }
 
+    /**
+     * @Route("/search", name="search")
+     */
+    public function search(ArticleRepository $articleRepository)
+    {
+        $term = 'intelligence';
+
+        $articles = $articleRepository->searchByTerm($term);
+
+        return $this->render('article_search.html.twig', [
+            'articles' => $articles,
+            'term' => $term
+        ]);
+    }
 
 }
