@@ -54,7 +54,7 @@ class ArticleController extends AbstractController
      */
     public function search(ArticleRepository $articleRepository, Request $request)
     {
-        // ma variable qui permet de stocker mon search 
+        // ma variable qui permet de stocker mon search
         $term = $request->query->get('q');
 
         $articles = $articleRepository->searchByTerm($term);
