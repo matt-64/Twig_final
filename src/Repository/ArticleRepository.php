@@ -14,18 +14,20 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ArticleRepository extends ServiceEntityRepository
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
     }
-
+    //méthode pour créer requête SQL
     public function searchByTerm($term)
     {
         $queryBuilder = $this->createQueryBuilder('article');
 
+        //requête SQL
         $query = $queryBuilder
             ->select('article')
-
+            //utilisation des methode du query builder pour requete SQL
             ->where('article.content LIKE :term')
             ->setParameter('term', '%'.$term.'%')
             ->getQuery();

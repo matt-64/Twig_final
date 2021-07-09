@@ -13,6 +13,10 @@
 </head>
 <body>
 <header>
+    <form action="{{ path('search') }}" method="get">
+        <input type="text" name="q" placeholder="recherche...">
+        <input type="submit" value="Rechercher">
+    </form>
     {% block header %}
     {% endblock %}
 </header>
