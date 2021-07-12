@@ -1,8 +1,7 @@
 <?php
 
 
-namespace App\Controller;
-
+namespace App\Controller\admin;
 
 use App\Entity\Article;
 use App\Entity\Tag;
@@ -10,14 +9,14 @@ use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController extends AbstractController
+class AdminArticleController extends AbstractController
 {
+    // Create-> (SQL)insert
     /**
-     * @Route("/articles/insert", name="articleInsert")
+     * @Route("/admin/articles/insert", name="admin_article_Insert")
      */
     public function  insertArtile(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
@@ -37,7 +36,6 @@ class ArticleController extends AbstractController
         $category = $categoryRepository->find(1);
         $article->setCategory($category);
 
-
         //creation d"un nouveau tag
         $tag = new Tag();
         //creation de son titre et de sa couleur
@@ -49,17 +47,17 @@ class ArticleController extends AbstractController
 
 
         //je prends toutes les entités crées(ici une seule) et je les 'pré' sauvegarde
-        //pré sauvegarde avant
         $entityManager->persist($article);
 
         // je récupère toutes les entités pré-sauvegardées et je les insère en BDD
         $entityManager->flush();
 
-        return $this->redirectToRoute('articleList');
+        return $this->redirectToRoute('admin_article_List');
     }
-
+    //------------------------------------------------------------------------------------------------------------
+    // Update
     /**
-     * @Route("/articles/update/{id}", name="update")
+     * @Route("/admin/articles/update/{id}", name="admin_article_update")
      */
     public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
     {
@@ -74,11 +72,13 @@ class ArticleController extends AbstractController
         //un flush pour l'envoi en bdd
         $entityManager->flush();
 
-        return $this->redirectToRoute('articleList');
+        return $this->redirectToRoute('admin_article_List');
 
     }
+    //------------------------------------------------------------------------------------------------------------
+    // Delete
     /**
-     * @Route("/articles/delete{id}", name="articleDelete)
+     * @Route("/admin/articles/delete/{id}", name="admin_article_Delete")
      */
     public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
     {
@@ -88,12 +88,12 @@ class ArticleController extends AbstractController
         $entityManager->remove($article);
         $entityManager->flush();
 
-        return $this->redirectToRoute('articleList');
-
-
+        return $this->redirectToRoute('admin_article_List');
     }
+    //------------------------------------------------------------------------------------------------------------
+    // Read
     /**
-     * @Route ("/articles", name="articleList")
+     * @Route ("/admin/articles", name="admin_article_List")
      */
     public function articleList(ArticleRepository $articleRepository)
     {
@@ -105,42 +105,8 @@ class ArticleController extends AbstractController
 
         $articles = $articleRepository->findAll();
 
-        return $this->render("ArticleList.html.twig", ['articles' => $articles]);
-
-    }
-
-    /**
-     * @Route("/articles/{id}",name="articleShow")
-     */
-    public function articleShow($id, ArticleRepository  $articleRepository)
-    {
-
-       $article = $articleRepository->find($id);
-
-        // si l'article n'a pas été trouvé, je renvoie une exception (erreur)
-        // pour afficher une 404
-        if (is_null($article)) {
-            throw new NotFoundHttpException();
-        }
-
-        return $this->render("ArticleShow.html.twig", ['article' => $article]);
-    }
-
-    //Je créer ma route pour mon search
-    /**
-     * @Route("/search", name="search")
-     */
-    public function search(ArticleRepository $articleRepository, Request $request)
-    {
-        // ma variable qui permet de stocker mon search
-        $term = $request->query->get('q');
-
-        $articles = $articleRepository->searchByTerm($term);
-
-        return $this->render('article_search.html.twig', [
-            'articles' => $articles,
-            'term' => $term
+        return $this->render("admin/admin_article_list.html.twig", [
+            'articles' => $articles
         ]);
     }
-
 }

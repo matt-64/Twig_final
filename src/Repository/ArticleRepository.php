@@ -38,8 +38,6 @@ class ArticleRepository extends ServiceEntityRepository
             ->orWhere('category.title LIKE :term')
             ->orWhere('tag.title LIKE :term')
 
-
-
             ->setParameter('term', '%'.$term.'%')
             ->getQuery();
 

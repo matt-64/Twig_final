@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 {% block metaTitle %}
     Articles
 {% endblock metaTitle %}
@@ -17,13 +17,15 @@
                 <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
                 {% if article.ispublished %}
                     <article>
-                        <a href="{{ path('articleShow',{id:article.id}) }}">
+                        <a href="{{ path('admin_article_List',{id:article.id}) }}">
                             <h1 class="text-deco">{{ article.title }}</h1>
                         </a>
                         <div class="articleContent ">
                             <p>{{ article.content }}</p>
                             <h1 class="text-center"><p>La valeur de l'id est: {{ article.id }}</p></h1>
                         </div>
+                        <a href="{{ path('admin_article_Delete', {'id': article.id }) }}" class="text-deco">Supprimer</a><br>
+                        <a href="{{ path('admin_article_update', {'id': article.id }) }}" class="text-deco">Mettre à jour (hardcodé)</a>
 
                     </article>
                 {% endif %}
@@ -32,3 +34,4 @@
 
     </main>
 {% endblock %}
+

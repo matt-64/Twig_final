@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 
 use App\Repository\TagRepository;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TagController extends AbstractController
+class FrontTagController extends AbstractController
 {
 
     /**
@@ -19,8 +19,8 @@ class TagController extends AbstractController
     {
         $tags = $tagRepository->findAll();
 
-        return $this->render('tag_list.html.twig', [
-            'tags' => $tags
+        return $this->render('front/tag_list.html.twig', [
+            'tags'=>$tags
         ]);
     }
 
@@ -37,7 +37,7 @@ class TagController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        return $this->render('tag_show.html.twig', [
+        return $this->render('front/tag_show.html.twig', [
             'tag' => $tag
         ]);
     }
