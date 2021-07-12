@@ -1,4 +1,4 @@
-{% extends 'front/base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
     {% block metaTitle %}
        Catégories
@@ -28,11 +28,17 @@
                    <!-- je test si 'published' de chaque catégorie vaut ->true, j'affiche... -->
                    {% if categorie.isPublished %}
                        <article>
-                           <a href="{{ path('categorieShow',{'id':categorie.id}) }}" class="text-deco ">
+                           <a href="{{ path('categorieList',{'id':categorie.id}) }}" class="text-deco ">
                                <h1>{{ categorie.title }}</h1>
                            </a>
                            <p>{{ categorie.description }}</p>
                            <h1 class="text-center">{{ categorie.id }}</h1>
+                           <div class="bouton">
+                               <a href="{{ path('admin_categorie_update', {'id': categorie.id }) }}" class="">Mettre à jour (hardcodé)</a><br>
+                           </div>
+                           <div class="bouton">
+                               <a href="{{ path('admin_article_Delete', {'id': categorie.id }) }}" class="">Supprimer</a>
+                           </div>
                        </article>
                    {% endif %}
                {% endfor %}

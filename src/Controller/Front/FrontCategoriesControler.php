@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class CategoriesControler extends AbstractController
+class FrontCategoriesControler extends AbstractController
 {
     /**
      * @Route ("/categories", name="categorieList")
@@ -18,7 +18,8 @@ class CategoriesControler extends AbstractController
 
        $categories = $categoryRepository->findAll();
 
-       return $this->render("CategoriesList.html.twig", ['categories' => $categories]);
+
+       return $this->render("front/CategoriesList.html.twig", ['categories' => $categories]);
    }
 //------------------------------------------------------------------------
     //Je créer ma 'Route'
@@ -39,7 +40,7 @@ class CategoriesControler extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        return $this->render("ShowCategorieId.html.twig", ['categorie' => $categorie]);
+        return $this->render("front/ShowCategorieId.html.twig", ['categorie' => $categorie]);
 
     }
 }
