@@ -63,6 +63,7 @@ class ArticleController extends AbstractController
      */
     public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
     {
+        
         $article = $articleRepository->find($id);
 
         // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
