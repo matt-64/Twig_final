@@ -9,7 +9,6 @@ use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -41,6 +40,7 @@ class ArticleController extends AbstractController
 
         //creation d"un nouveau tag
         $tag = new Tag();
+        //creation de son titre et de sa couleur
         $tag->setTitle("info");
         $tag->setColor("blue");
 
@@ -63,29 +63,44 @@ class ArticleController extends AbstractController
      */
     public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
     {
-        
+        //Je fais une querie by 'id' que je stock dans ma variable $article
         $article = $articleRepository->find($id);
 
         // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
         $article->setTitle('La regression');
 
+        //un persist pour une pré-sauvegarde
         $entityManager->persist($article);
+        //un flush pour l'envoi en bdd
         $entityManager->flush();
 
         return $this->redirectToRoute('articleList');
 
     }
+    /**
+     * @Route("/articles/delete{id}", name="articleDelete)
+     */
+    public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        $article = $articleRepository->find($id);
 
+        //une methode de la classe entityManager 'remove' qui prend la place de persist pour supprimer l'article en bdd
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('articleList');
+
+
+    }
     /**
      * @Route ("/articles", name="articleList")
      */
     public function articleList(ArticleRepository $articleRepository)
     {
-        //je dois faire une requête SELECT en BDD
-        //sur la table article
+        //je dois faire une requête SELECT en BDD sur la table article
         //La classe qui me permet de faire des requêtes SELECT est ArticleRepository
         //donc je dois instancier cette classe
-        //popur ça, j'utilise l'autowire (je place la classe en argument du controleur)
+        //pour ça, j'utilise l'autowire (je place la classe en argument du controleur)
         //suivi de la variable dans laquelle je veux que sf m'instancie la classe
 
         $articles = $articleRepository->findAll();
