@@ -31,6 +31,7 @@ class ArticleController extends AbstractController
         $article->setCreatedAt(new \DateTime('NOW'));
 
         //je prends toutes les entités crées(ici une seule) et je les 'pré' sauvegarde
+        //pré sauvegarde avant
         $entityManager->persist($article);
 
         // je récupère toutes les entités pré-sauvegardées et je les insère en BDD

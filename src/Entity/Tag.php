@@ -28,6 +28,7 @@ class Tag
      */
     private $color;
 
+    //Un Tag peut avoir plusieurs articles et un article ne peut avoir qu'un seul tag
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="tag")
      */
