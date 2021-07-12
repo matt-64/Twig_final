@@ -33,6 +33,7 @@ class ArticleRepository extends ServiceEntityRepository
 
             //utilisation des methode du query builder pour requete SQL
             ->where('article.content LIKE :term')
+            //ajout de filtres suplémentaire avec orWhere
             ->orWhere('article.title LIKE :term')
             ->orWhere('category.title LIKE :term')
             ->orWhere('tag.title LIKE :term')
