@@ -5,8 +5,11 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Tag;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,7 +20,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/articles/insert", name="articleInsert")
      */
-    public function  insertArtile(EntityManagerInterface $entityManager)
+    public function  insertArtile(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
 
         // J'utilise l'entité Article, pour créer un nouvel article en bdd
@@ -30,6 +33,21 @@ class ArticleController extends AbstractController
         $article->setIsPublished(true);
         $article->setCreatedAt(new \DateTime('NOW'));
 
+        //je recupère la catégorie dont l'id =1
+        //doctrine me créé une insctance de l'entité category avec les infos de category en bdd
+        $category = $categoryRepository->find(1);
+        $article->setCategory($category);
+
+
+        //creation d"un nouveau tag
+        $tag = new Tag();
+        $tag->setTitle("info");
+        $tag->setColor("blue");
+
+        $entityManager->persist($tag);
+        $article->setTag($tag);
+
+
         //je prends toutes les entités crées(ici une seule) et je les 'pré' sauvegarde
         //pré sauvegarde avant
         $entityManager->persist($article);
@@ -37,7 +55,24 @@ class ArticleController extends AbstractController
         // je récupère toutes les entités pré-sauvegardées et je les insère en BDD
         $entityManager->flush();
 
-        dump('ok'); die;
+        return $this->redirectToRoute('articleList');
+    }
+
+    /**
+     * @Route("/articles/update/{id}", name="update")
+     */
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        $article = $articleRepository->find($id);
+
+        // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
+        $article->setTitle('La regression');
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('articleList');
+
     }
 
     /**
