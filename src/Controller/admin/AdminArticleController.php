@@ -5,6 +5,7 @@ namespace App\Controller\admin;
 
 use App\Entity\Article;
 use App\Entity\Tag;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,46 +15,59 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminArticleController extends AbstractController
 {
-    // Create-> (SQL)insert
     /**
-     * @Route("/admin/articles/insert", name="admin_article_Insert")
+     * @Route("/admin/articles/insert", name="admin_article_insert")
      */
-    public function  insertArtile(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
+    public function insertArticle()
     {
-
-        // J'utilise l'entité Article, pour créer un nouvel article en bdd
-        // une instance de l'entité Article = un enregistrement d'article en bdd
         $article = new Article();
 
-        // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
-        $article->setTitle('Tire article depuis controleur');
-        $article->setContent('blablabnkzd');
-        $article->setIsPublished(true);
-        $article->setCreatedAt(new \DateTime('NOW'));
+        $articleForm = $this->createForm(ArticleType::class, $article);
 
-        //je recupère la catégorie dont l'id =1
-        //doctrine me créé une insctance de l'entité category avec les infos de category en bdd
-        $category = $categoryRepository->find(1);
-        $article->setCategory($category);
-
-        //creation d"un nouveau tag
-        $tag = new Tag();
-        //creation de son titre et de sa couleur
-        $tag->setTitle("info");
-        $tag->setColor("blue");
-
-        $entityManager->persist($tag);
-        $article->setTag($tag);
-
-
-        //je prends toutes les entités crées(ici une seule) et je les 'pré' sauvegarde
-        $entityManager->persist($article);
-
-        // je récupère toutes les entités pré-sauvegardées et je les insère en BDD
-        $entityManager->flush();
-
-        return $this->redirectToRoute('admin_article_List');
+        return $this->render('admin/admin_insert.html.twig', [
+            'articleForm' => $articleForm->createView()
+        ]);
     }
+    // Create-> (SQL)insert
+//    /**
+//     * @Route("/admin/articles/insert", name="admin_article_Insert")
+//     */
+//    public function  insertArtile(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
+//    {
+//
+//        // J'utilise l'entité Article, pour créer un nouvel article en bdd
+//        // une instance de l'entité Article = un enregistrement d'article en bdd
+//        $article = new Article();
+//
+//        // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
+//        $article->setTitle('Tire article depuis controleur');
+//        $article->setContent('blablabnkzd');
+//        $article->setIsPublished(true);
+//        $article->setCreatedAt(new \DateTime('NOW'));
+//
+//        //je recupère la catégorie dont l'id =1
+//        //doctrine me créé une insctance de l'entité category avec les infos de category en bdd
+//        $category = $categoryRepository->find(1);
+//        $article->setCategory($category);
+//
+//        //creation d"un nouveau tag
+//        $tag = new Tag();
+//        //creation de son titre et de sa couleur
+//        $tag->setTitle("info");
+//        $tag->setColor("blue");
+//
+//        $entityManager->persist($tag);
+//        $article->setTag($tag);
+//
+//
+//        //je prends toutes les entités crées(ici une seule) et je les 'pré' sauvegarde
+//        $entityManager->persist($article);
+//
+//        // je récupère toutes les entités pré-sauvegardées et je les insère en BDD
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('admin_article_List');
+//    }
     //------------------------------------------------------------------------------------------------------------
     // Update
     /**
@@ -65,7 +79,7 @@ class AdminArticleController extends AbstractController
         $article = $articleRepository->find($id);
 
         // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
-        $article->setTitle('La regression');
+        $article->setTitle('call of duty');
 
         //un persist pour une pré-sauvegarde
         $entityManager->persist($article);
