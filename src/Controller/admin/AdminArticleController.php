@@ -9,8 +9,9 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminArticleController extends AbstractController
@@ -18,19 +19,33 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/admin/articles/insert", name="admin_article_insert")
      */
-    public function insertArticle()
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager)
     {
         $article = new Article();
 
+        //on génère le formulaire en utilisant le gabarit + une instance de l'entité Article
         $articleForm = $this->createForm(ArticleType::class, $article);
+
+        //On lie le formulaire aux données de POST(aux données envoyées au post)
+        $articleForm->handleRequest($request);
+
+
+        //Si le formulaire est bien rempli et bien valide (tous les champs complet) alors
+        //j'utilise la méthode persit & flush de l'entityManager pour flush en Bd.
+        if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+        }
 
         return $this->render('admin/admin_insert.html.twig', [
             'articleForm' => $articleForm->createView()
+            //clef => variable
         ]);
     }
     // Create-> (SQL)insert
 //    /**
-//     * @Route("/admin/articles/insert", name="admin_article_Insert")
+//     * @Route("/admin/articles/static", name="admin_article_Insert")
 //     */
 //    public function  insertArtile(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
 //    {

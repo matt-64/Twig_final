@@ -67,7 +67,7 @@ class AdminCategoriesControler extends AbstractController
     }
 
     /**
-     * @Route("/admin/categories/delete/{id}", name="admin_article_Delete")
+     * @Route("/admin/categories/delete/{id}", name="admin_categorie_Delete")
      */
     public function deleteArticle($id, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager)
     {
