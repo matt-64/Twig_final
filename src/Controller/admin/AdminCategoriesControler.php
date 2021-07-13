@@ -44,7 +44,7 @@ class AdminCategoriesControler extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        return $this->render("Front/ShowCategorieId.html.twig", ['categorie' => $categorie]);
+        return $this->render("admin/admin_Show_CategorieId.html.twig", ['categorie' => $categorie]);
     }
 
     /**

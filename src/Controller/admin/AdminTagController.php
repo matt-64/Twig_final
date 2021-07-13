@@ -4,6 +4,9 @@
 namespace App\Controller\admin;
 
 
+use App\Entity\Article;
+use App\Entity\Tag;
+use App\Repository\CategoryRepository;
 use App\Repository\TagRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
+    //READ
     /**
      * @Route("/admin/tags", name="admin_tag_List")
      */
@@ -37,6 +41,7 @@ class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
         return $this->redirectToRoute('admin_tag_List');
     }
 
+    //Update
     /**
      * @Route("/admin/tags/update/{id}", name="admin_tag_update")
      */
@@ -56,5 +61,11 @@ class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
         return $this->redirectToRoute('admin_tag_List');
 
     }
+
+    //CREATE
+    /**
+     * @Route("/admin/tag/insert", name="admin_article_Insert")
+     */
+
 
 }
