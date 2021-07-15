@@ -4,12 +4,11 @@
 namespace App\Controller\admin;
 
 
-use App\Entity\Article;
 use App\Entity\Tag;
-use App\Repository\CategoryRepository;
+use App\Form\TagType;
 use App\Repository\TagRepository;
-
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
@@ -49,9 +48,10 @@ class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
     {
         //Je fais une querie by 'id' que je stock dans ma variable $tag
         $tag = $tagRepository->find($id);
+        $tag = $this->createForm(TagType::class, $tag);
 
-        // j'utilise les setters de l'entité tag pour renseigner les valeurs des colonnes
-        $tag->setTitle('Nouveau Tag');
+        // j'utilise les setters de l'entité tag pour renseigner les valeurs des colonnes(version hardcodée:
+//        $tag->setTitle('Nouveau Tag');
 
         //un persist pour une pré-sauvegarde
         $entityManager->persist($tag);
@@ -64,8 +64,34 @@ class AdminTagController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
 
     //CREATE
     /**
-     * @Route("/admin/tag/insert", name="admin_article_Insert")
+     * @Route("/admin/tag/insert", name="admin_tag_Insert")
      */
+    public function insertTag(Request $request, EntityManagerInterface $entityManager)
+    {
+        $tag = new Tag();
+
+        //on génère le formulaire en utilisant le gabarit + une instance de l'entité Tag
+        $tagForm = $this->createForm(TagType::class, $tag);
+
+        //On lie le formulaire aux données de POST(aux données envoyées au post)
+        $tagForm->handleRequest($request);
+
+
+        //Si le formulaire est bien rempli et bien valide (tous les champs complet) alors
+        //j'utilise la méthode persit & flush de l'entityManager pour flush en Bd.
+        if ($tagForm->isSubmitted() && $tagForm->isValid()){
+            $entityManager->persist($tag);
+            $entityManager->flush();
+            //Je redirige vers la page tag_list
+            return $this->redirectToRoute('admin_tag_List');
+
+        }
+
+        return $this->render('admin/admin_tag_insert.html.twig', [
+            'tagForm' => $tagForm->createView()
+            //clef => variable
+        ]);
+    }
 
 
 }

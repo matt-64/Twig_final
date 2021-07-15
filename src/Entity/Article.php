@@ -5,6 +5,8 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 //exercice:
 //créez une table article avec ces colonnes : id, title, content, createdAt
@@ -33,13 +35,20 @@ class Article
 
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="On t'a dit de remplir le Titre Neuneu")
      */
     private $title;
 
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
+     * @Assert\Length(
+     *     min=5,
+     *     max=30,
+     *     minMessage="Vous devez écrire plus de 5 caractères",
+     *     maxMessage="Vous devez écrire moins de 30 caractères"
+     * )
      */
     private $content;
 

@@ -1,0 +1,32 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block main %}
+    {{ form_start(tagForm) }}
+    <section class="container bg-secondary ">
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#        permet de rendre le label du 'title'#}
+            {{ form_label(tagForm.title,'Nom du Tag' ,{'label_attr': {'class': 'form-label'}}) }}
+            {#        permet de rendre l'input du 'title'#}
+            {{ form_widget(tagForm.title, {'attr': {'class': 'form_tag_input_label form-control','placeholder':'Votre Tag'}}) }}
+            {{ form_errors(tagForm.title) }}
+        </div>
+
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#    Je récupère le color de cette manière dans le twig avec une class 'form_tag_color_input'#}
+            {{ form_label(tagForm.color,'Couleur du Tag' , {'label_attr': {'class': 'form_tag_color_input form-label'}}) }}
+            {{ form_widget(tagForm.color, {'attr': {'class': 'form_tag_input_label form-control','rows':'5','placeholder':'Votre couleur'}}) }}
+            {{ form_errors(tagForm.color) }}
+        </div>
+
+
+        <div class="mb-5 mt-5">
+            {{ form_widget(tagForm.submit, {'attr': {'class': 'btn btn-primary col-4'}, 'label':'Envoyer'}) }}
+        </div>
+
+        {# équivalent de la balise de fermeture du form  #}
+        {{ form_end(tagForm) }}
+    </section>
+
+
+{% endblock %}
+

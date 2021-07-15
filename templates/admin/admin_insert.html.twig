@@ -26,27 +26,32 @@
 
     {#    ----------------------------------------------------------------------------------------------#}
     {#    2ème façon#}
+
     <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
         {#        permet de rendre le label du 'title'#}
         {{ form_label(articleForm.title,'Titre' ,{'label_attr': {'class': 'form-label'}}) }}
         {#        permet de rendre l'input du 'title'#}
         {{ form_widget(articleForm.title, {'attr': {'class': 'form_article_input_label form-control','placeholder':'Votre Titre'}}) }}
+        {{ form_errors(articleForm.title) }}
     </div>
 
     <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
         {#    Je récupère le content de cette manière dans le twig avec une class 'form_article_content_input'#}
         {{ form_label(articleForm.content,'Contenu' , {'label_attr': {'class': 'form_article_content_input form-label'}}) }}
         {{ form_widget(articleForm.content, {'attr': {'class': 'form_article_input_label form-control','rows':'5','placeholder':'Votre contenu'}}) }}
+        {{ form_errors(articleForm.content) }}
     </div>
 
     <div class="mb-2">
         {{ form_label(articleForm.createdAt, 'Date de création' , {'label_attr': {'class': 'form_article_content_input'}}) }}
         {{ form_widget(articleForm.createdAt, {'attr': {'class': 'form_createdAt_input_label','placeholder':'remplissez le formulaire'}})  }}
+        {{ form_errors(articleForm.createdAt) }}
     </div>
 
     <div class="mb-2">
         {{ form_label(articleForm.isPublished, 'Publié/Non Publié' , {'label_attr': {'class': 'form_article_content_input form-check-label'}}) }}
         {{ form_widget(articleForm.isPublished, {'attr': {'class': 'form_isPublished_input_label form-check-input','placeholder':'remplissez le formulaire'}})  }}
+        {{ form_errors(articleForm.isPublished) }}
     </div>
 
     <div class="mb-5 mt-5">
