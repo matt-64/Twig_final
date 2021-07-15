@@ -56,7 +56,7 @@ class AdminCategoriesControler extends AbstractController
         $categorie = $categorieRepository->find($id);
 
         // j'utilise les setters de l'entité categorie pour renseigner les valeurs des colonnes
-        $categorie->setTitle('Nouvelle categorie');
+        $categorie->setTitle('Gaming');
 
         //un persist pour une pré-sauvegarde
         $entityManager->persist($categorie);
