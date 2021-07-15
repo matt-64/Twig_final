@@ -15,7 +15,7 @@
         <div class="articleMain space-between">
             {% for article in articles %}
                 <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
-                {% if article.ispublished %}
+
                     <article>
                         <a href="{{ path('admin_article_List',{id:article.id}) }}">
                             <h1 class="text-deco">{{ article.title }}</h1>
@@ -28,7 +28,7 @@
                         <a href="{{ path('admin_article_update', {'id': article.id }) }}" class="text-deco">Mettre à jour (hardcodé)</a>
 
                     </article>
-                {% endif %}
+
             {% endfor %}
         </div>
 

@@ -35,6 +35,8 @@ class AdminArticleController extends AbstractController
         if ($articleForm->isSubmitted() && $articleForm->isValid()){
             $entityManager->persist($article);
             $entityManager->flush();
+            //Je redirige vers la page article_list
+            return $this->redirectToRoute('admin_article_List');
 
         }
 
@@ -88,22 +90,51 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/admin/articles/update/{id}", name="admin_article_update")
      */
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request)
     {
-        //Je fais une querie by 'id' que je stock dans ma variable $article
+        // pour l'insert : $article = new Article();
         $article = $articleRepository->find($id);
 
-        // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
-        $article->setTitle('call of duty');
+        // on génère le formulaire en utilisant le gabarit + une instance de l'entité Article
+        $articleForm = $this->createForm(ArticleType::class, $article);
 
-        //un persist pour une pré-sauvegarde
-        $entityManager->persist($article);
-        //un flush pour l'envoi en bdd
-        $entityManager->flush();
+        // on lie le formulaire aux données de POST (aux données envoyées en POST)
+        $articleForm->handleRequest($request);
 
-        return $this->redirectToRoute('admin_article_List');
+        // si le formulaire a été posté et qu'il est valide (que tous les champs
+        // obligatoires sont remplis correctement), alors on enregistre l'article
+        // créé en bdd
+        if ($articleForm->isSubmitted() && $articleForm->isValid()) {
+            $entityManager->persist($article);
+            $entityManager->flush();
 
+            return $this->redirectToRoute('admin_article_List');
+        }
+
+        return $this->render('admin/admin_insert.html.twig', [
+            'articleForm' => $articleForm->createView()
+        ]);
     }
+//    /**
+//     * @Route("/admin/articles/update/Static/{id}", name="admin_article_update")
+//     */
+//    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+//    {
+//        //Je fais une querie by 'id' que je stock dans ma variable $article
+//        $article = $articleRepository->find($id);
+//
+//        // j'utilise les setters de l'entité Article pour renseigner les valeurs des colonnes
+//     Modification du title en 'dur'
+//        $article->setTitle('call of duty');
+//
+//        //un persist pour une pré-sauvegarde
+//        $entityManager->persist($article);
+//        //un flush pour l'envoi en bdd
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('admin_article_List');
+//
+//    }
     //------------------------------------------------------------------------------------------------------------
     // Delete
     /**

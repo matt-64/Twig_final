@@ -99,4 +99,10 @@ footer {
     background-color: rgba(0, 0, 0, 0.69);
     height: 10vh;
 }
+.form_article_content_input{
+    color: black;
+}
+.form_title{
+    color: black;
+}
 
