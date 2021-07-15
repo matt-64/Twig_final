@@ -1,14 +1,14 @@
 {% extends 'admin/admin_base.html.twig' %}
 
 {% block main %}
-
+    {{ form_start(articleForm) }}
 <section class="container bg-secondary ">
     <h1 class="mb-5">
         Création d'un nouvel Article
     </h1>
     {#    1ère façon:#}
     {# équivalent de la balise d'ouverture du form  #}
-    {{ form_start(articleForm) }}
+
 
     {# permet d'afficher une row du formulaire #}
     {#    Je met mon titre en h1#}
@@ -45,7 +45,7 @@
     </div>
 
     <div class="mb-2">
-        {{ form_label(articleForm.isPublished, 'En ligne' , {'label_attr': {'class': 'form_article_content_input form-check-label'}}) }}
+        {{ form_label(articleForm.isPublished, 'Publié/Non Publié' , {'label_attr': {'class': 'form_article_content_input form-check-label'}}) }}
         {{ form_widget(articleForm.isPublished, {'attr': {'class': 'form_isPublished_input_label form-check-input','placeholder':'remplissez le formulaire'}})  }}
     </div>
 
