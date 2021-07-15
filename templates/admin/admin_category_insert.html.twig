@@ -1,0 +1,41 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block main %}
+    {{ form_start(categoryForm) }}
+    <section class="container bg-secondary ">
+        <h1 class="mb-5">
+            Création d'une nouvelle Catégorie
+        </h1>
+
+{#Nom de la catégorie#}
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#        permet de rendre le label du 'title'#}
+            {{ form_label(categoryForm.title,'Nom de la Catégorie' ,{'label_attr': {'class': 'form-label'}}) }}
+            {#        permet de rendre l'input du 'title'#}
+            {{ form_widget(categoryForm.title, {'attr': {'class': 'form_article_input_label form-control','placeholder':'Votre Categorie'}}) }}
+            {{ form_errors(categoryForm.title) }}
+        </div>
+{#Contenu de la catégorie#}
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#    Je récupère le content de cette manière dans le twig avec une class 'form_article_content_input'#}
+            {{ form_label(categoryForm.description,'Description' , {'label_attr': {'class': 'form_article_content_input form-label'}}) }}
+            {{ form_widget(categoryForm.description, {'attr': {'class': 'form_article_input_label form-control','rows':'3','placeholder':'Contenu de la categorie'}}) }}
+            {{ form_errors(categoryForm.description) }}
+        </div>
+{#Publication true/false de la catégorie#}
+        <div class="mb-2">
+            {{ form_label(categoryForm.isPublished, 'Publié/Non Publié' , {'label_attr': {'class': 'form_article_content_input form-check-label'}}) }}
+            {{ form_widget(categoryForm.isPublished, {'attr': {'class': 'form_isPublished_input_label form-check-input','placeholder':'remplissez le formulaire'}})  }}
+            {{ form_errors(categoryForm.isPublished) }}
+        </div>
+{#Création du bouton Submit#}
+        <div class="mb-5 mt-5">
+            {{ form_widget(categoryForm.submit, {'attr': {'class': 'btn btn-primary col-4'}, 'label':'Envoyer'}) }}
+        </div>
+
+        {# équivalent de la balise de fermeture du form  #}
+        {{ form_end(categoryForm) }}
+    </section>
+
+
+{% endblock %}
