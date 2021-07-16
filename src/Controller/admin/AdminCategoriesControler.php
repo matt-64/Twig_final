@@ -123,7 +123,6 @@ class AdminCategoriesControler extends AbstractController
             //Je redirige vers la page categorie_list
             return $this->redirectToRoute('categorieList');
         }
-
         return $this->render('admin/admin_category_insert.html.twig', [
             'categoryForm' => $categoryForm->createView()
             //clef => variable
