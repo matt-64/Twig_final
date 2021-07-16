@@ -8,9 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-//exercice:
-//créez une table article avec ces colonnes : id, title, content, createdAt
-
 
 //J'utilise une classe du VENDOR '@ORM' afin de créer une entité du nom de la classe
 /**
