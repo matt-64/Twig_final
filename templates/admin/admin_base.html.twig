@@ -17,6 +17,13 @@
     </nav>
 </header>
 <main>
+    {#            Je créer une boucle me permettant d'afficher un message flash success or error #}
+    {#            J'attribue des classe pour le style.css#}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     {% block main %}
     {% endblock main %}
 </main>

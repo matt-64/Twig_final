@@ -69,6 +69,8 @@ class AdminCategoriesControler extends AbstractController
         if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
             $entityManager->persist($categorie);
             $entityManager->flush();
+            $this->addFlash('success', 'Congrats ! Votre catégorie a bien été mise à jour!');
+
 
             return $this->redirectToRoute('categorieList');
         }
@@ -89,6 +91,9 @@ class AdminCategoriesControler extends AbstractController
         //une methode de la classe entityManager 'remove' qui prend la place de persist pour supprimer la categorie en bdd
         $entityManager->remove($categorie);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Votre catégorie a bien été supprimé!');
+
 
         return $this->redirectToRoute('categorieList');
     }
@@ -112,6 +117,9 @@ class AdminCategoriesControler extends AbstractController
         if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
             $entityManager->persist($categorie);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Votre catégorie est bien crée!');
+
             //Je redirige vers la page categorie_list
             return $this->redirectToRoute('categorieList');
         }

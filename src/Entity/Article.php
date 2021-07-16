@@ -36,7 +36,7 @@ class Article
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="On t'a dit de remplir le Titre Neuneu")
+     * @Assert\NotBlank(message="Rempli le titre de l'article stp")
      */
     private $title;
 

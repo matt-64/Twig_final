@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -20,11 +21,18 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Rempli donc la catégorie stp")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min=5,
+     *     max=30,
+     *     minMessage="Vous devez écrire plus de 5 caractères",
+     *     maxMessage="Vous devez écrire moins de 30 caractères"
+     * )
      */
     private $description;
 

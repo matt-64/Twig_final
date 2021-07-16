@@ -15,8 +15,8 @@
         <div class="articleMain space-between">
             {% for article in articles %}
                 <!-- je test si 'published' de chaque article vaut ->true, j'affiche... -->
+                <article>
 
-                    <article>
                         <a href="{{ path('admin_article_List',{id:article.id}) }}">
                             <h1 class="text-deco">{{ article.title }}</h1>
                         </a>

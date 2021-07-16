@@ -35,6 +35,7 @@ class AdminArticleController extends AbstractController
         if ($articleForm->isSubmitted() && $articleForm->isValid()){
             $entityManager->persist($article);
             $entityManager->flush();
+            $this->addFlash('success', 'Article Created! Votre article est bien crée!');
             //Je redirige vers la page article_list
             return $this->redirectToRoute('admin_article_List');
 
@@ -107,6 +108,7 @@ class AdminArticleController extends AbstractController
         if ($articleForm->isSubmitted() && $articleForm->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
+            $this->addFlash('success', 'Congrats ! Votre article a bien été mis à jour!');
 
             return $this->redirectToRoute('admin_article_List');
         }
@@ -147,6 +149,9 @@ class AdminArticleController extends AbstractController
         //une methode de la classe entityManager 'remove' qui prend la place de persist pour supprimer l'article en bdd
         $entityManager->remove($article);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Article Created! Votre article a bien été supprimé!');
+
 
         return $this->redirectToRoute('admin_article_List');
     }

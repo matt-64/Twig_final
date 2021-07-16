@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +16,9 @@ class CategoryType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('isPublished')
+            ->add('isPublished' , CheckboxType::class, [
+                'data'=>true
+            ])
             ->add('submit', SubmitType::class)
         ;
     }
