@@ -1,0 +1,32 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block main %}
+    {{ form_start(userForm) }}
+    <section class="container bg-secondary ">
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#        permet de rendre le label du 'email'#}
+            {{ form_label(userForm.email,'entrez votre mail' ,{'label_attr': {'class': 'form-label'}}) }}
+            {#        permet de rendre l'input du 'email'#}
+            {{ form_widget(userForm.email, {'attr': {'class': 'form_tag_input_label form-control','placeholder':'Votre Tag'}}) }}
+            {{ form_errors(userForm.email) }}
+        </div>
+
+        <div class="mb-5 shadow-lg p-3 mb-5 bg-body rounded">
+            {#    Je récupère le password de cette manière dans le twig avec une class 'form_tag_password_input'#}
+            {{ form_label(userForm.password,'Votre Mot de Passe' , {'label_attr': {'class': 'form_tag_password_input form-label'}}) }}
+            {{ form_widget(userForm.password, {'attr': {'class': 'form_tag_input_label form-control','rows':'5','placeholder':'Votre couleur'}}) }}
+            {{ form_errors(userForm.password) }}
+        </div>
+
+
+        <div class="mb-5 mt-5">
+            {{ form_widget(userForm.submit, {'attr': {'class': 'btn btn-primary col-4'}, 'label':'Envoyer'}) }}
+        </div>
+
+        {# équivalent de la balise de fermeture du form  #}
+        {{ form_end(userForm) }}
+    </section>
+
+
+{% endblock %}
+
