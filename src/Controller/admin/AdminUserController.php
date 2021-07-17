@@ -47,7 +47,9 @@ class AdminUserController extends \Symfony\Bundle\FrameworkBundle\Controller\Abs
                 $this->passwordEncoder->encodePassword($user, $user->getPassword()));
                 $entityManager->persist($user);
                 $entityManager->flush();
-                //Je redirige vers la page user_list
+            $this->addFlash('success', 'Votre compte a bien était créé');
+
+            //Je redirige vers la page user_list
             return $this->redirectToRoute('admin_article_List');
         }
         return $this->render('admin/admin_user_insert.html.twig', [
